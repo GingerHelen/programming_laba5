@@ -2,6 +2,7 @@ package com.GingerHelen.data;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+import com.GingerHelen.utility.CollectionManager;
 
 
 public class Flat implements Comparable<Flat> {
@@ -25,18 +26,18 @@ public class Flat implements Comparable<Flat> {
 
     private House house;
 
-    public Flat(Integer id, String name, Coordinates coordinates, Long area, long numberOfRooms,
-                Furnish furnish, View view, Transport transport, House house) {
-        this.id = id;
+    public Flat(String name, Coordinates coordinates, Long area, long numberOfRooms,
+                Furnish furnish, View view, Transport transport, House house, CollectionManager collectionManager) {
         this.name = name;
         this.coordinates = coordinates;
-        this.creationDate = LocalDateTime.now();
         this.area = area;
         this.numberOfRooms = numberOfRooms;
         this.furnish = furnish;
         this.view = view;
         this.transport = transport;
         this.house = house;
+        id = collectionManager.getMaxId() + 1;
+        this.creationDate = LocalDateTime.now();
     }
 
     public Flat() {

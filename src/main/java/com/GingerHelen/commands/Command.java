@@ -1,5 +1,7 @@
 package com.GingerHelen.commands;
 
+import com.GingerHelen.exceptions.NoSuchCommandException;
+
 public abstract class Command {
     private final String name;
     private final String description;
@@ -10,7 +12,7 @@ public abstract class Command {
         this.description = description;
     }
 
-    public abstract void execute(String argument);
+    public abstract void execute(String argument) throws NoSuchCommandException;
 
     public String getName() {
         return name;

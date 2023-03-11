@@ -1,7 +1,10 @@
 package com.GingerHelen.utility;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Stack;
+import com.GingerHelen.exceptions.InvalidInputException;
 
 public class InputManager {
     private final Stack<BufferedReader> readers = new Stack<>();
@@ -13,17 +16,16 @@ public class InputManager {
         readers.push(new BufferedReader(new InputStreamReader(bufferedInputStream)));
         this.outputManager = outputManager;
     }
-
-    public String read() throws SomethingExceptions{ //TODO добавить исключение
+     public String read() throws InvalidInputException {
         try {
-            if () { //TODO проверка есть ли что читать вообще пока не придумала
-                return readers.peek().readLine();
+            if (readers.) { //TODO
+                return readers.; //TODO
             } else {
                 if (scriptMode) {
                     finishReadScript();
                     return read();
                 } else {
-                    throw new SomethingExceptions();
+                    throw new InvalidInputException();
                 }
             }
         } catch (IOException e) {
@@ -39,7 +41,7 @@ public class InputManager {
         } else {
             try {
                 outputManager.println("Start reading from file " + scriptFile.getName() + "...");
-                readers.push(new BufferedReader(new InputStreamReader(new BufferedInputStream(new FileInputStream(fileName)))));
+                readers.push(new BufferedReader(new InputStreamReader(new BufferedInputStream(Files.newInputStream(Paths.get(fileName))))));
                 files.push(scriptFile);
                 scriptMode = true;
                 outputManager.muteNotifications();
